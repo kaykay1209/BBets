@@ -29,7 +29,7 @@ source(file="payoffFunction-2.R")
  
 ```{r}
 money=vector("numeric",0)
-for(i in c(1:40)){
+for(i in c(1:1000)){
   money[i]=(profit(35,2,637))
 }
 ```
@@ -38,14 +38,17 @@ for(i in c(1:40)){
 hist(money)
 ```
 
- Brownlows profits are from 200 to 375. 
+ Brownlows profits are from 200 to 350. 
  
  
 ```{r}
 moneysorted=sort(money)
+lci=moneysorted[26]
+uci=moneysorted[974]
 ```
  
- 
+
+
 Report git commit structure:
 There are 3 questions and there should be at least 3 separate commits, at least one dealing with each of the 3 questions.
 1. What are the fair odds for a bet on matching birthdays in a 35 person class.
@@ -57,32 +60,57 @@ There are 3 questions and there should be at least 3 separate commits, at least 
 The function will be given a class_size by number of students, odds, and Number_of_times brownlow made the bet.  It will give you back how much Brownlows earnings were. We will use it to answer our three questions below. If you can, improve this function by giving default values to some of its inputs. 
 
 # In the class and payoff as described  If you highered 40 brownlow substitute teachers to do the same thing that Brownlow did then.
+
 ## what is their average earnings
-## the standard deviation and a 95% confidence interval for their earnings?
+
   
 <!--Explain and display your method of coming up with a 95% confidence interval of  professor Brownlows winnings (or losings)-->
 
 
+```{r}
+money=vector("numeric",0)
+for(i in c(1:40)){
+  money[i]=( profit(35,2,637))
+}
+```
+
+
+```{r}
+t.test(money)
+print(sd(money))
+```
+
+
+## the standard deviationand a 95% confidence interval for thier earnings? 
+ 
+ The 95% confidence interval for earnings is "r lci" to "r uci"
+ 
+ The standard deviation is 24.25716.
+ 
+
 # What are the fair odds? Use manipulation of odds in the function to tune Brownlows earnings to zero. 
 
+```{r}
+money=vector("numeric", 0)
 
-<!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
-
-
+for(i in c(1:200)){
+  money[i]=( profit(35,4.5,637))
+}
+hist(money)
+```
 
 
 # What size of class makes the 2:1 bet fair?  Use manipulation of number of Students to tune Brownlows earnings to zero.
 
-<!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
 
 
+we started with 35 which was too high,then we tried 37, following 29 which was still too high. we tried 28 which was too low, therefore we settled between 28 and 29 which turned out to be very similar in this example both would be acceptable answers. we concluded that we woukd go with 29 students with the bet being 2:1, this was close to zero profit for Dr. J. 
 
-
-
-
-
+<!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If professor Brownlow is consistantly making or losing money how could he change his payout so that his profits center on zero?  Also discuss what size his class should be in order to have his current scheme balance at zero profit.!-->
-
+ At the beginning Dr j was making about $200 dollars in profit with the class size being 35 with 2:1 odds when guessing that there would be at least 2 students with the same birthday. When changing the odds pay from to 4.5:1 we got payout for Dr J down to about 0 dollars profit. 
+ 
+ We then changed the class size from 35 to either 28-29 students at 2:1 odds and we got the same results, Dr J's profits were very close to 0. 
