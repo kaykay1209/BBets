@@ -85,7 +85,7 @@ print(sd(money))
  
  The 95% confidence interval for earnings is "r lci" to "r uci"
  
- The standard deviation is 24.25716.
+ The standard deviation is 33.44766
  
 
 # What are the fair odds? Use manipulation of odds in the function to tune Brownlows earnings to zero. 
